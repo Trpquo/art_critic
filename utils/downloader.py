@@ -1,6 +1,5 @@
 #%%
 # test je li sve dobro instalirano
-from time import sleep
 import torch
 print(torch.version.cuda, torch.cuda.is_available(), torch.cuda.device(0))
 
