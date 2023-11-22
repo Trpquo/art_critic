@@ -17,17 +17,21 @@ def create_dataloaders(root, categories):
     return dataloaders
 
 
-def create_learners(dataloaders, model=resnet34, iters=3, export=False):
-    """f(dataloaders:DataBlock.loaders(), model:fastai.vision.models, iters:Int=3, export:Bool=False)"""
+def create_learners(dataloaders, model=resnet34):
+    """f(dataloaders:DataBlock.loaders(), model:fastai.vision.models, iters:Int=3, export:Bool=False) ==> learners:{ "category_n":vision.models[n]... }"""
     
     learners = {}
     for key in dataloaders.keys():
-        print(f">>> Training {key}! >>>")
+        print(f">>> Preparing {key}! >>>")
         learners[key] = vision_learner(dataloaders[key], model, metrics=error_rate)
-        learners[key].fine_tune(iters)
-        if export:
-            learners[key].export(f"../models/{key}.pkl")
-
-
+        learners[key].lr_find()
     return learners
 
+def train_learners(learners, iters, lr, export=False):
+    """f( learners:{ "category_n": vision.models[n]... }, iters:Int, export:Bool ) => void"""
+
+    for key in learners.keys():
+        print(f">>> Training {key}! >>>")
+        learners[key].fine_tune(iters, lr)
+        if export:
+            learners[key].export(f"../models/{key}.pkl")
