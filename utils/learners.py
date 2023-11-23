@@ -1,4 +1,5 @@
-from fastai.vision.all import  DataBlock, get_image_files, vision_learner, ImageBlock, CategoryBlock, RandomSplitter, Resize, parent_label, error_rate
+from audioop import avg
+from fastai.vision.all import  DataBlock, get_image_files, vision_learner, ImageBlock, CategoryBlock, RandomSplitter, Resize, parent_label, error_rate, minimum, steep, valley, slide
 from fastai.vision.models import resnet34
 
 def create_dataloaders(root, categories):
@@ -24,13 +25,16 @@ def create_learners(dataloaders, model=resnet34):
     for key in dataloaders.keys():
         print(f">>> Preparing {key}! >>>")
         learners[key] = vision_learner(dataloaders[key], model, metrics=error_rate)
-        learners[key].lr_find()
     return learners
 
 def train_learners(learners, iters, lr, export=False):
     """f( learners:{ "category_n": vision.models[n]... }, iters:Int, export:Bool ) => void"""
 
     for key in learners.keys():
+        if lr==None:
+            lrs = learners[key].lr_find(suggest_funcs=(minimum, valley, slide))
+            lr = sum(lrs)/len(lrs)
+            print(f"Best learning rate for {key} is {lr}, because thats the μ of {lrs}.")
         print(f">>> Training {key}! >>>")
         learners[key].fine_tune(iters, lr)
         if export:

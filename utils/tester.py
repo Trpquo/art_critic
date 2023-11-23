@@ -1,37 +1,58 @@
-from fastai.vision.all import Image, PILImage
+from fastai.vision.all import Image, PILImage, resize_image, Path, get_image_files #, verify_images
 from fastdownload import download_url
+import math, random, shutil, re
 
-def test_learners(learners, root, preview=False):
-    dest = root/"temp"
-    if not dest.exists(): 
-        dest.mkdir()
-    internet = [
-        "https://tse2.mm.bing.net/th?id=OIP.UPZ1-G8gpc5FkNIC2RCWSgHaFj&pid=Api",
-        "https://tse2.mm.bing.net/th?id=OIP.if_cidFAKZ49wY7BLA3feQHaGE&pid=Api",
-        "https://tse4.mm.bing.net/th?id=OIP.Px4ySbgcqEgFJOhOq8k5mAHaEo&pid=Api",
-        "https://tse4.mm.bing.net/th?id=OIP.eNfpYf9Oqyh0u3_b1Eu20wHaGL&pid=Api",
-        "https://tse3.mm.bing.net/th?id=OIP.NEkbbYyu56hdqekgPKxmoQAAAA&pid=Api",
-        "https://tse3.mm.bing.net/th?id=OIF.jw1Qziy4XGJbDtTYtrBY3Q&pid=Api",
-        "https://tse2.mm.bing.net/th?id=OIP.pJwVOqij6rPFrOjcHc1jbAHaKj&pid=Api",
-        "https://tse1.mm.bing.net/th?id=OIP.-Hy08hdnnfvCwor0Y_fyGAHaLA&pid=Api",
-        "https://tse4.mm.bing.net/th?id=OIP.mUVhO-Zld2qEJKe_r9tJaAHaHn&pid=Api",
-        "https://tse2.mm.bing.net/th?id=OIP.DqjuCxnocoFQ0hvIH_Cm8wHaEK&pid=Api",
-        "https://tse1.mm.bing.net/th?id=OIP.EFoByYTKu1KbZgoVfocCDAHaFU&pid=Api",
-        "https://tse2.mm.bing.net/th?id=OIP.BFRcQqZ5Bpw1a-6u_XoBrwHaFj&pid=Api",
-        "https://tse2.mm.bing.net/th?id=OIP.2qqjQQ0wW37Lbvkx50zPxgHaEB&pid=Api"
-    ]
-    for image in range(len(internet)):
-        if preview:
-            download_url(internet[0], dest=dest/"test.jpg")
-            im = Image.open(dest/"test.jpg")
-            im.to_thumb(128, 128)
-        base = f"test{image+1}.jpg"
-        test = dest/base
-        print("\n\n#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%")
-        print((str(image+1)+" - ")*10)
-        download_url(internet[image], dest=test, show_progress=False)
 
+categories = {
+    "depth": ["iconic", "symbolic"],
+    "breath": ["abstract", "concrete"]
+}
+
+
+def test_learners(learners, test_set, root, preview=False):
+    """ f( learners:{"String":model...}, test_set:String[], root:Path, preview:Bool ) """
+
+    container = root/"temp"
+
+    print(test_set)
+    if test_set:
+        print("ajmo00oooooo!")
+        if container.exists(): 
+            shutil.rmtree(container)
+        else:
+            container.mkdir()
+        counter = 1
+        for image in range(len(test_set)):
+            if counter > 9: 
+                break
+            if random.randint(0,3) > 1:
+                continue
+            # image_name = test_set[image].split("/")[-1]
+            base = f"test{counter}.jpg"
+            dest = container/base
+            if preview:
+                download_url(test_set[0], dest=dest, show_progress=False)
+                im = Image.open(dest)
+                im.to_thumb(128, 128)
+            download_url(test_set[image], dest=dest, show_progress=False)
+
+            if math.prod(PILImage.create(dest).size) > 5e4:
+                resize_image(dest, dest=Path("."), max_size=244)
+                counter += 1
+            else:
+                try:
+                    dest.unlink()
+                except Exception as ex:
+                    print("\n\n", f"!! ////// Slika {dest} je premala. ////// !!")
+                    print(ex)
+
+    test_images = get_image_files(container).sorted()
+    # print(test_images)
+    for src in test_images:
+        sample = PILImage.create(src)
+        print("\n\n" +"#%&%#"*15)
+        print("- " + ( re.findall("\d+", str(src.stem))[0] + " - ")*15)
         for key in learners.keys():
-            prediction,_,probs = learners[key].predict(PILImage.create(test))
-            print(f'Image {base} is {prediction}.')
-            print(*zip( ["abstract", "cocrete"], probs ))
+            prediction,_,probs = learners[key].predict(sample)
+            print(f'Image {src.name} is {prediction}.')
+            print(*zip( categories[key], probs.numpy()) )

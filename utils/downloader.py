@@ -1,6 +1,7 @@
 import pandas as pd
 from fastai.vision.all import Path, download_images, verify_images, resize_images, get_image_files, DataBlock
-
+from urllib.request import urlopen
+import re
 
 def image_downloader(root, base, categories,sample_size=200, image_size=512, skip_downloads=False ):
     """
@@ -40,3 +41,21 @@ def image_downloader(root, base, categories,sample_size=200, image_size=512, ski
 
     return container, categories
 
+def page_scraper(url):
+
+    page = urlopen(url)
+    html = page.read().decode("utf-8")
+
+
+    src = "<(?:img|figure)[\s]*.*?(?:src|image)(?:set|Set)?=[\"'\s]+((?:http)[^'\"\s]+(?:.jpg|.jpeg|.png|.gif|,))[^'\"]*?[\"']+.*?>"
+    bgurl = "url\([\s]*?((?:http)[^\"'\s]+(?:.jpg|.jpeg|.png))[^\"']*?\)"
+
+
+    # find CSS background images
+    bgimage_list = re.findall(bgurl, html, re.IGNORECASE) 
+    # find img tags
+    image_list = re.findall(src, html, re.IGNORECASE)
+    all_images = bgimage_list + image_list
+
+    # print(all_images)
+    return [ im for im in all_images if not ("data:" in im) ]
