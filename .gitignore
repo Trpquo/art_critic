@@ -1,3 +1,5 @@
-/artefacts/*
-*.pkl
-*.pyc
+artefacts/**
+models/**
+*/temp/**
+**.pkl
+**.pyc
