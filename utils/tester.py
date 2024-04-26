@@ -1,35 +1,42 @@
-from fastai.vision.all import Image, PILImage, resize_image, Path, get_image_files #, verify_images
+import math
+import random
+import re
+import shutil
+
+from fastai.vision.all import (  # , verify_images
+    Image,
+    Path,
+    PILImage,
+    get_image_files,
+    resize_image,
+)
 from fastdownload import download_url
-import math, random, shutil, re
 
-
-categories = {
-    "depth": ["iconic", "symbolic"],
-    "breath": ["abstract", "concrete"]
-}
+categories = {"depth": ["iconic", "symbolic"], "breath": ["abstract", "concrete"]}
 
 
 def test_learners(learners, test_set, root, preview=False):
-    """ f( learners:{"String":model...}, test_set:String[], root:Path, preview:Bool ) """
+    """f( learners:{"String":model...}, test_set:String[], root:Path, preview:Bool )"""
 
-    container = root/"temp"
+    container = root / "temp"
 
     print(test_set)
     if test_set:
         print("ajmo00oooooo!")
-        if container.exists(): 
+        if container.exists():
             shutil.rmtree(container)
         else:
             container.mkdir()
         counter = 1
         for image in range(len(test_set)):
-            if counter > 9: 
+            if counter > 9:
                 break
-            if random.randint(0,3) > 1:
+            # trunk-ignore(bandit/B311)
+            if random.randint(0, 3) > 1:
                 continue
             # image_name = test_set[image].split("/")[-1]
             base = f"test{counter}.jpg"
-            dest = container/base
+            dest = container / base
             if preview:
                 download_url(test_set[0], dest=dest, show_progress=False)
                 im = Image.open(dest)
@@ -50,9 +57,9 @@ def test_learners(learners, test_set, root, preview=False):
     # print(test_images)
     for src in test_images:
         sample = PILImage.create(src)
-        print("\n\n" +"#%&%#"*15)
-        print("- " + ( re.findall("\d+", str(src.stem))[0] + " - ")*15)
+        print("\n\n" + "#%&%#" * 15)
+        print("- " + (re.findall("\d+", str(src.stem))[0] + " - ") * 15)
         for key in learners.keys():
-            prediction,_,probs = learners[key].predict(sample)
-            print(f'Image {src.name} is {prediction}.')
-            print(*zip( categories[key], probs.numpy()) )
+            prediction, _, probs = learners[key].predict(sample)
+            print(f"Image {src.name} is {prediction}.")
+            print(*zip(categories[key], probs.numpy()))
