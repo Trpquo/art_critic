@@ -1,5 +1,5 @@
 * ArtCritic
 
-This repository presents the code used for creating database, training and archiving models and testing them on arbitrary websites. The models are trained on works selected by public acceptance and arbitrary style from WikiArt's collection and can be used to measure semantic attributes of images based purely on their synctactic form (appearance). Project is developed by Trpquo in year 2024. 
+ArtCritic repository presents the code used for creating database, training and archiving models and testing them on arbitrary websites. The models are trained on works selected by public acceptance and by arbitrary selection of styles from WikiArt's collection, and can be used to measure semantic attributes of images based purely on their syntactic form (appearance). Project is developed by Trpquo in year 2024. 
 
-This repository is published under the GNU General Public License v3.0.
+Repository is published under the GNU General Public License v3.0.
