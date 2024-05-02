@@ -1,18 +1,19 @@
 from audioop import avg
+
 from fastai.vision.all import (
-    DataBlock,
-    get_image_files,
-    vision_learner,
-    ImageBlock,
     CategoryBlock,
+    DataBlock,
+    ImageBlock,
     RandomSplitter,
     Resize,
-    parent_label,
     error_rate,
+    get_image_files,
     minimum,
+    parent_label,
+    slide,
     steep,
     valley,
-    slide,
+    vision_learner,
 )
 from fastai.vision.models import resnet34
 
@@ -39,7 +40,7 @@ def create_dataloaders_multicat(root, categories):
             ImageBlock,
             CategoryBlock,
             CategoryBlock,
-        ),  # ovo je gdje definiram da će ulaz biti slika, ali da će izlaz biti klasifikacija po dvije kategorije
+        ),  # ovo bi bilo gdje definiram da će ulaz biti slika, ali da će izlaz biti klasifikacija po dvije kategorije. No to mi za ništo ne treba
         m_inp=1,  # definicija je da je ulaz samo jedan (dakle od gornje tri rubrike, dva su izlaza)
         get_items=get_image_files,
         get_y=[parent_label, parent_label],

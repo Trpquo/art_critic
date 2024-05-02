@@ -63,3 +63,19 @@ def test_learners(learners, test_set, root, preview=False):
             prediction, _, probs = learners[key].predict(sample)
             print(f"Image {src.name} is {prediction}.")
             print(*zip(categories[key], probs.numpy()))
+
+
+def fill_database(learners, database):
+    """f( learners:{"String":model...}, database, :String[])"""
+
+    # container = root / "temp"
+
+    if database:
+        for row in database:
+            sample = PILImage.create(row["webUrl"])
+            for key in learners.keys():
+                prediction, _, probs = learners[key].predict(sample)
+                database[key] = prediction
+                database[f"{key}_probs"] = probs
+
+    return database
