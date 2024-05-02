@@ -2,4 +2,6 @@ artefacts/**
 models/**
 */temp/**
 **.pkl
-**.pyc
+**.pyctemp/*
+.trunk
+temp/*

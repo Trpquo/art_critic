@@ -3,6 +3,7 @@ import random
 import re
 import shutil
 
+import pandas as pd
 from fastai.vision.all import (  # , verify_images
     Image,
     Path,
@@ -15,7 +16,7 @@ from fastdownload import download_url
 categories = {"depth": ["iconic", "symbolic"], "breath": ["abstract", "concrete"]}
 
 
-def test_learners(learners, test_set, root, preview=False):
+def test_learners(learners, test_set, model_name, root, preview=False):
     """f( learners:{"String":model...}, test_set:String[], root:Path, preview:Bool )"""
 
     container = root / "temp"
@@ -54,7 +55,7 @@ def test_learners(learners, test_set, root, preview=False):
                     print(ex)
 
     test_images = get_image_files(container).sorted()
-    # print(test_images)
+    print(f"//////////////// {model_name.upper()} ////////////////")
     for src in test_images:
         sample = PILImage.create(src)
         print("\n\n" + "#%&%#" * 15)
@@ -65,17 +66,77 @@ def test_learners(learners, test_set, root, preview=False):
             print(*zip(categories[key], probs.numpy()))
 
 
-def fill_database(learners, database):
-    """f( learners:{"String":model...}, database, :String[])"""
+def predict_columns(learners, database, model_name, root):
+    """f( learners:{"String":model...}, database, model_name:String[]) => result:list(of files)"""
 
-    # container = root / "temp"
+    container = root / "temp"
+    warehouse = root / "data" / model_name
+    result = []
+    counter = 1
 
-    if database:
-        for row in database:
-            sample = PILImage.create(row["webUrl"])
-            for key in learners.keys():
-                prediction, _, probs = learners[key].predict(sample)
-                database[key] = prediction
-                database[f"{key}_probs"] = probs
+    for directory in (container, warehouse):
+        if directory.exists():
+            shutil.rmtree(directory)
+        else:
+            directory.mkdir()
 
-    return database
+    if isinstance(database, pd.DataFrame):
+        data_left = len(database)
+        for index, row in database.iterrows():
+            data_left -= 1
+            base = f"test{index}.jpg"
+            dest = container / base
+            try:
+                download_url(
+                    row["webUrl"].replace("!Large.jpg", ""),
+                    dest=dest,
+                    show_progress=False,
+                )
+                sample = PILImage.create(dest)
+                dest.unlink()
+            except:
+                sample = None
+            if sample:
+                for key in learners.keys():
+                    prediction, _, probs = learners[key].predict(sample)
+                    row[f"{key}"] = prediction
+                    row[f"{key}_probs"] = probs[0].item()
+                result.append(row)
+
+                datafile = f"{warehouse}/critic_output{counter}.parquet"
+                if len(result) >= 1000 or data_left == 0:
+                    output = pd.DataFrame(result)
+                    result.append(datafile)
+                    output[
+                        [
+                            "artistName",
+                            "title",
+                            "year",
+                            "style",
+                            "breath",
+                            "breath_probs",
+                            "depth",
+                            "depth_probs",
+                            "genre",
+                            "artemis",
+                            "emotions",
+                            "webUrl",
+                        ]
+                    ].to_parquet(datafile)
+                    print(f"Saved the output {counter}!")
+                    counter += 1
+                    result = []
+
+            else:
+                print("NEMA!!!", row["webUrl"])
+
+    return result
+
+
+
+
+
+
+
+
+ 
