@@ -2,7 +2,6 @@ import math
 import random
 import re
 import shutil
-from xml.parsers.expat import model
 
 import pandas as pd
 from fastai.vision.all import (  # , verify_images
@@ -135,23 +134,3 @@ def predict_columns(learners, database, model_name, root):
                 print("NEMA!!!", row["webUrl"])
 
     return result
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
