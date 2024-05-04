@@ -1,5 +1,3 @@
-from audioop import avg
-
 from fastai.vision.all import (
     CategoryBlock,
     DataBlock,
@@ -11,14 +9,13 @@ from fastai.vision.all import (
     minimum,
     parent_label,
     slide,
-    steep,
     valley,
     vision_learner,
 )
 from fastai.vision.models import resnet34
 
 
-def create_dataloaders(root, categories):
+def create_dataloaders(root, categories, show_batch=True):
     """f(root:Path(string), categories:{String:{String:String[]}}) => learners:Learner[]"""
     dataloaders = {}
     for key in categories.keys():
@@ -29,7 +26,9 @@ def create_dataloaders(root, categories):
             get_y=parent_label,
             item_tfms=[Resize(256, method="pad")],
         ).dataloaders(root / key)
-        dataloaders[key].show_batch(max_n=9)
+
+        if show_batch:
+            dataloaders[key].show_batch(max_n=9)
 
     return dataloaders
 
@@ -67,7 +66,7 @@ def train_learners(learners, iters, lr, export=False):
     """f( learners:{ "category_n": vision.models[n]... }, iters:Int, export:Bool ) => void"""
 
     for key in learners.keys():
-        if lr == None:
+        if lr is None:
             lrs = learners[key].lr_find(suggest_funcs=(minimum, valley, slide))
             lr = sum(lrs) / len(lrs)
             print(
