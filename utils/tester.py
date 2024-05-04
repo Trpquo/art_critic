@@ -78,8 +78,7 @@ def predict_columns(learners, database, model_name, root):
     for directory in (container, warehouse):
         if directory.exists():
             shutil.rmtree(directory)
-        else:
-            directory.mkdir()
+        directory.mkdir()
 
     if isinstance(database, pd.DataFrame):
         data_left = len(database)
@@ -110,22 +109,24 @@ def predict_columns(learners, database, model_name, root):
                 if len(result) >= 1000 or data_left == 0:
                     output = pd.DataFrame(result)
                     result.append(datafile)
-                    output[
-                        [
-                            "artistName",
-                            "title",
-                            "year",
-                            "style",
-                            "breath",
-                            "breath_probs",
-                            "depth",
-                            "depth_probs",
-                            "genre",
-                            "artemis",
-                            "emotions",
-                            "webUrl",
-                        ]
-                    ].to_parquet(datafile)
+                    column_selection = [
+                        "artistName",
+                        "title",
+                        "year",
+                        "style",
+                        f"{model_name}_breath",
+                        f"{model_name}_breath_probs0",
+                        f"{model_name}_breath_probs1",
+                        f"{model_name}_depth",
+                        f"{model_name}_depth_probs0",
+                        f"{model_name}_depth_probs1",
+                        "genre",
+                        "artemis",
+                        "emotions",
+                        "webUrl",
+                    ]
+                    print(column_selection)
+                    output[column_selection].to_parquet(datafile)
                     print(f"Saved the output {counter}!")
                     counter += 1
                     result = []
@@ -134,6 +135,13 @@ def predict_columns(learners, database, model_name, root):
                 print("NEMA!!!", row["webUrl"])
 
     return result
+
+
+
+
+
+
+
 
 
 

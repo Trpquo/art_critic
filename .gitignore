@@ -1,7 +1,12 @@
 artefacts/**
 models/**
 */temp/**
+temp/**
 **.pkl
 **.pyctemp/*
 .trunk
-temp/*
+data/artemis*
+data/wikiart_composed.parquet.link
+data/wikiart_paintings*
+data/Wikiart-Emotions*
+utils/__pycache__/*
