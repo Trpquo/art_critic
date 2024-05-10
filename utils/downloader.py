@@ -10,9 +10,11 @@ from fastai.vision.all import (
     verify_images,
 )
 
+from settings import container, root
+
 
 def image_downloader(
-    root, base, categories, sample_size=200, image_size=512, skip_downloads=False
+    base, categories=None, sample_size=200, image_size=512, skip_downloads=False
 ):
     """
     f(base:String, categories:{String:String[]}, sample_size:Int) => root:String
@@ -23,8 +25,7 @@ def image_downloader(
 
     data = pd.read_parquet(f"{root}/data/{base}.parquet")
 
-    container = root / "artefacts"
-    if not categories:
+    if categories is None:
         categories = {
             "breath": {"abstract": ["Abstract Art"], "figurative": ["Naturalism"]},
             "depth": {"symbolic": ["Classicism"], "iconic": ["Post-Impressionism"]},
@@ -35,12 +36,12 @@ def image_downloader(
             path = container / key
             if not path.exists():
                 path.mkdir()
-            for cat, examples in cats.items():
-                print("\n", cat, len(examples), "×", int(sample_size / len(examples)))
-                for example in examples:
-                    print(example)
-                    sample = data.loc[data["style"].str.contains(example)].sample(
-                        int(sample_size / len(examples))
+            for cat, styles in cats.items():
+                print("\n", cat, len(styles), "×", int(sample_size / len(styles)))
+                for style in styles:
+                    print(style)
+                    sample = data.loc[data["style"].str.contains(style)].sample(
+                        int(sample_size / len(styles))
                     )
                     urls = sample["webUrl"].values
                     download_images(dest=path / cat, urls=urls)
@@ -50,7 +51,7 @@ def image_downloader(
     failed.map(Path.unlink)
     print("\n Neispravnih:", len(failed))
 
-    return container, categories
+    return categories
 
 
 def page_scraper(url):

@@ -14,6 +14,8 @@ from fastai.vision.all import (
 )
 from fastai.vision.models import resnet34
 
+from settings import garage
+
 
 def create_dataloaders(root, categories, show_batch=True):
     """f(root:Path(string), categories:{String:{String:String[]}}) => learners:Learner[]"""
@@ -62,7 +64,9 @@ def create_learners(dataloaders, model=resnet34):
     return learners
 
 
-def train_learners(learners, iters, lr, export=False):
+def train_learners(
+    learners, model_pick, iters=3, lr=None, show_results=False, export=False
+):
     """f( learners:{ "category_n": vision.models[n]... }, iters:Int, export:Bool ) => void"""
 
     for key in learners.keys():
@@ -70,9 +74,18 @@ def train_learners(learners, iters, lr, export=False):
             lrs = learners[key].lr_find(suggest_funcs=(minimum, valley, slide))
             lr = sum(lrs) / len(lrs)
             print(
-                f"Best learning rate for {key} is {lr}, because thats the μ of {lrs}."
+                f"Best learning rate for {key} {iters}x is {lr}, because thats the μ of {lrs}."
             )
-        print(f">>> Training {key}! >>>")
+
+        print(f">>> Training {key} {iters}x! >>>")
         learners[key].fine_tune(iters, lr)
+
+        if show_results:
+            learners[key].show_results()
+
         if export:
-            learners[key].export(f"../models/{key}.pkl")
+            # spremi model na disk
+            spot = garage / f"{model_pick}_{iters}x"
+            if not spot.exists():
+                spot.mkdir()
+            learners[key].export(spot / f"{key}.pkl")
