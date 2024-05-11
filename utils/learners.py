@@ -4,6 +4,7 @@ from fastai.vision.all import (
     ImageBlock,
     RandomSplitter,
     Resize,
+    ShowGraphCallback,
     error_rate,
     get_image_files,
     minimum,
@@ -78,7 +79,7 @@ def train_learners(
             )
 
         print(f">>> Training {key} {iters}x! >>>")
-        learners[key].fine_tune(iters, lr)
+        learners[key].fine_tune(iters, lr, cbs=[ShowGraphCallback()])
 
         if show_results:
             learners[key].show_results()
