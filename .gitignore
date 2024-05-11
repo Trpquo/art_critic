@@ -4,10 +4,11 @@ models/**
 temp/**
 **.pkl
 **.pyctemp/*
+composer.ipynb
 .trunk
 data/artemis*
 data/wikiart_composed.parquet.link
 data/wikiart_paintings*
 data/Wikiart-Emotions*
-utils/__pycache__
-utils/__pycache__/*
+*/__pycache__
+__pycache__
