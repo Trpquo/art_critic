@@ -15,7 +15,7 @@ from fastai.vision.all import (
 )
 from fastai.vision.models import resnet34
 
-from settings import garage
+from settings import spot
 
 
 def create_dataloaders(root, categories, show_batch=True):
@@ -86,7 +86,7 @@ def train_learners(
 
         if export:
             # spremi model na disk
-            spot = garage / f"{model_pick}_{iters}x"
+            spot = spot / f"{model_pick}_{iters}x"
             if not spot.exists():
                 spot.mkdir()
             learners[key].export(spot / f"{key}.pkl")
