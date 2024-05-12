@@ -71,8 +71,9 @@ def predict_columns(learners, database, model_name, root):
 
     container = root / "temp"
     warehouse = root / "data" / model_name
-    result = []
+    datafiles = []
     counter = 1
+    result = []
 
     for directory in (container, warehouse):
         if directory.exists():
@@ -85,9 +86,10 @@ def predict_columns(learners, database, model_name, root):
             data_left -= 1
             base = f"test{index}.jpg"
             dest = container / base
+            row["webUrl"] = row["webUrl"].replace("!Large.jpg", "")
             try:
                 download_url(
-                    row["webUrl"].replace("!Large.jpg", ""),
+                    row["webUrl"],
                     dest=dest,
                     show_progress=False,
                 )
@@ -99,38 +101,33 @@ def predict_columns(learners, database, model_name, root):
             if sample:
                 for key in learners.keys():
                     prediction, _, probs = learners[key].predict(sample)
-                    row[f"{model_name}_{key}"] = prediction
-                    row[f"{model_name}_{key}_probs0"] = probs[0].item()
-                    row[f"{model_name}_{key}_probs1"] = probs[1].item()
+                    row[key] = prediction
+                    row[f"{key}_probs"] = probs[0].item()
                 result.append(row)
 
                 datafile = f"{warehouse}/critic_output{counter}.parquet"
                 if len(result) >= 1000 or data_left == 0:
                     output = pd.DataFrame(result)
-                    result.append(datafile)
+                    datafiles.append(datafile)
                     column_selection = [
                         "artistName",
                         "title",
                         "year",
                         "style",
-                        f"{model_name}_breath",
-                        f"{model_name}_breath_probs0",
-                        f"{model_name}_breath_probs1",
-                        f"{model_name}_depth",
-                        f"{model_name}_depth_probs0",
-                        f"{model_name}_depth_probs1",
+                        "breath",
+                        "breath_probs",
+                        "depth",
+                        "depth_probs",
                         "genre",
                         "artemis",
                         "emotions",
                         "webUrl",
                     ]
-                    print(column_selection)
                     output[column_selection].to_parquet(datafile)
-                    print(f"Saved the output {counter}!")
                     counter += 1
                     result = []
 
             else:
                 print("NEMA!!!", row["webUrl"])
 
-    return result
+    return datafiles

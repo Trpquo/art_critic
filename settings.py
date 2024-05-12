@@ -1,7 +1,7 @@
 from pathlib import Path
 
 root = Path("./")
-spot = root / "models"
+garage = root / "models"
 container = root / "artefacts"
 
 database = "wikiart_composed"
