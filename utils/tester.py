@@ -13,7 +13,7 @@ from fastai.vision.all import (  # , verify_images
 )
 from fastdownload import download_url
 
-categories = {"depth": ["iconic", "symbolic"], "breath": ["abstract", "concrete"]}
+categories = {"depth": ["iconic", "symbolic"], "breadth": ["abstract", "concrete"]}
 
 
 def test_learners(learners, test_set, model_name, root, preview=False):
@@ -114,8 +114,8 @@ def predict_columns(learners, database, model_name, root):
                         "title",
                         "year",
                         "style",
-                        "breath",
-                        "breath_probs",
+                        "breadth",
+                        "breadth_probs",
                         "depth",
                         "depth_probs",
                         "genre",

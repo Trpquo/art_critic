@@ -6,7 +6,7 @@ container = root / "artefacts"
 
 database = "wikiart_composed"
 categories = {
-    "breath": {
+    "breadth": {
         "abstract": [
             "Hard Edge Painting",
             "Concretism",

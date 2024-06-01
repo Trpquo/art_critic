@@ -31,7 +31,7 @@ def image_downloader(
 
     if categories is None:
         categories = {
-            "breath": {"abstract": ["Abstract Art"], "figurative": ["Naturalism"]},
+            "breadth": {"abstract": ["Abstract Art"], "figurative": ["Naturalism"]},
             "depth": {"symbolic": ["Classicism"], "iconic": ["Post-Impressionism"]},
         }
     sample_size = sample_size
