@@ -1,0 +1,1320 @@
+@charset "UTF-8";
+
+.reveal .has-light-background,
+.reveal .has-light-background h1,
+.reveal .has-light-background h2,
+.reveal .has-light-background h3,
+.reveal .has-light-background h4,
+.reveal .has-light-background h5,
+.reveal .has-light-background h6 {
+  color: #333;
+}
+
+:root {
+
+  --background-primary: var(--color-d-gray-70);
+  --background-primary-alt: var(--color-d-gray-70);
+  --background-secondary: var(--color-d-blacker);
+  --background-secondary-alt: var(--color-d-black);
+  --background-modifier-border: var(--color-d-gray-50);
+  --background-modifier-form-field: var(--color-d-blacker);
+  --background-modifier-form-field-highlighted: var(--color-d-black);
+  --background-modifier-box-shadow: var(--color-d-shadow-100);
+  --background-modifier-success: var(--color-d-green-300);
+  --background-modifier-error: var(--color-d-red-500);
+  --background-modifier-error-hover: var(--color-d-red-700);
+  --background-modifier-cover: var(--color-d-shadow-cover);
+  --text-normal: var(--color-d-white);
+  --text-heading: var(--text-muted);
+  --text-muted: var(--color-d-gray-20);
+  --text-faint: var(--color-d-gray-30);
+  --text-accent: var(--color-d-yellow-700);
+  --text-accent-hover: var(--color-d-yellow-300);
+  --text-error: var(--color-d-red-900);
+  --text-error-hover: var(--color-d-red-500);
+  --text-highlight-bg: var(--color-d-highlight-blue);
+  --text-highlight-bg-active: var(--color-d-highlight-blue);
+  --highlight-mix-blend-mode: lighten;
+  --text-selection: var(--color-d-gray-50);
+  --text-on-accent: var(--color-d-white);
+  --interactive-hover: var(--color-d-gray-60);
+  --interactive-accent: var(--color-d-gray-40);
+  --interactive-accent-rgb: 76, 138, 164;
+  --interactive-accent-hover: var(--color-d-gray-50);
+  --interactive-success: var(--color-d-green-700);
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: var(--background-modifier-border);
+  --scrollbar-active-thumb-bg: var(--color-d-green-700);
+
+  /*──────────The PRIMARY Color Palette for Dark Theme──────────*/
+  --color-d-whiter: aliceblue;
+  /* Najsvjetlije što ide */
+  --color-d-white: white; /* Ovo je boja teksta */
+  --color-d-gray: var(--color-d-gray-50);
+  --color-d-gray-10: hsl(235, 25%, 75%);
+  /* Boja sekundarnog teksta */
+  --color-d-gray-20: hsl(235, 25%, 60%);
+  /* Boja teksta u bočnim panelima */
+  --color-d-gray-30: hsl(235, 25%, 50%);
+  /* Boja ikona i sl. */
+  --color-d-gray-40: hsl(235, 25%, 40%);
+  /* Boja ikona 2 i sl. */
+  --color-d-gray-50: hsl(235, 25%, 30%);
+  /* Ovo je boja linija obruba  */
+  --color-d-gray-60: hsl(235, 25%, 20%);
+  /* Ovo je boja pozadine aktivnog bloka */
+  --color-d-gray-70: hsl(235, 25%, 17%);
+  /* Ovo je boja pozadine */
+  --color-d-gray-80: hsl(235, 25%, 14%);
+  /* Ovo je boja pozadine widgeta za brojanje slovnih znakova */
+  --color-d-gray-90: hsl(235, 25%, 20%);
+  /* Ovo je boja pozadine umetnutih blokova */
+  --color-d-gray-100: hsl(235, 25%, 10%);
+  --color-d-black: var(--color-d-gray-70);
+  /* hsl(220, 16%, 24%); */
+  /* Boja pozadine bočnih panela i tablica... */
+  --color-d-blacker: hsl(235, 25%, 14%);
+  /* Najtamnije što ide */
+  --color-d-shadow-10: hsla(235, 38%, 8%, 0.25);
+  --color-d-shadow-50: hsla(235, 25%, 10%, 0.35);
+  --color-d-shadow-100: hsla(235, 25%, 8%, 0.35);
+  --color-d-shadow-cover: hsla(235, 25%, 13%, 0.25);
+
+  --color-d-yellow: var(--color-d-yellow-500);
+  --color-d-yellow-300: hsl(30, 85%, 90%);
+  --color-d-yellow-500: hsl(30, 85%, 70%);
+  --color-d-yellow-700: hsl(30, 80%, 70%);
+  --color-d-yellow-900: hsl(30, 80%, 60%);
+  --color-d-yellow-a: hsl(30, 80%, 70%);
+
+  --color-d-red: var(--color-d-red-500);
+  --color-d-red-300: hsl(345, 75%, 75%);
+  --color-d-red-500: hsl(345, 75%, 70%);
+  --color-d-red-700: hsl(345, 75%, 65%);
+  --color-d-red-900: hsl(345, 75%, 60%);
+  --color-d-red-a: hsl(345, 75%, 65%);
+
+  --color-d-blue: var(--color-d-blue-500);
+  --color-d-blue-300: hsl(185, 65%, 70%);
+  --color-d-blue-500: hsl(185, 65%, 60%);
+  --color-d-blue-700: hsl(185, 65%, 50%);
+  --color-d-blue-900: hsl(185, 65%, 40%);
+  --color-d-blue-a: hsl(185, 65%, 50%);
+
+  --color-d-orange: var(--color-d-orange-500);
+  --color-d-orange-300: hsl(15, 90%, 90%);
+  --color-d-orange-500: hsl(15, 90%, 80%);
+  --color-d-orange-700: hsl(15, 90%, 70%);
+  --color-d-orange-900: hsl(15, 90%, 60%);
+  --color-d-orange-a: hsl(15, 90%, 70%);
+
+  --color-d-green: var(--color-d-green-500);
+  --color-d-green-300: hsl(100, 50%, 80%);
+  --color-d-green-500: hsl(100, 50%, 70%);
+  --color-d-green-700: hsl(100, 50%, 60%);
+  --color-d-green-900: hsl(100, 50%, 50%);
+  --color-d-green-a: hsl(100, 50%, 60%);
+
+  --color-d-violet: var(--color-d-violet-500);
+  --color-d-violet-300: hsl(260, 65%, 80%);
+  --color-d-violet-500: hsl(260, 65%, 70%);
+  --color-d-violet-700: hsl(260, 65%, 60%);
+  --color-d-violet-900: hsl(260, 65%, 50%);
+  --color-d-violet-a: hsl(260, 65%, 60%);
+
+  /*~ Highlights */
+  --ui-color-highlight-text: var(--color-d-black);
+  --ui-color-highlight-bg: hsla(30, 80%, 70%, .8);
+  --color-highlight-yellow: hsla(30, 80%, 70%, .8);
+  --color-highlight-red: hsla(345, 75%, 65%, .8);
+  --color-highlight-blue: hsla(185, 65%, 50%, .8);
+  --color-highlight-orange: hsla(15, 90%, 70%, .8);
+  --color-highlight-green: hsla(100, 50%, 60%, .8);
+  --color-highlight-violet: hsla(256, 70%, 70%, .8);
+
+  /*~ Graph View */
+  --graph-color-node-resolved: var(--color-d-blue-900);
+  --graph-color-node-unresolved: var(--color-d-yellow-700);
+  --graph-color-node-unresolved-opacity: 1;
+  --graph-color-node-tag: var(--color-d-red-500);
+  --graph-color-node-attachment: var(--color-d-green-500);
+  --graph-color-node-focused: var(--color-d-white);
+  --graph-color-node-border-hover: var(--color-d-gray-10);
+  --graph-color-node-arrow: var(--color-d-gray-40);
+  --graph-color-node-line: var(--color-d-gray-50);
+  --graph-color-node-line-hover: var(--color-d-gray-40);
+  --graph-color-node-text: var(--color-d-gray-10);
+
+  /*~ Colorful Headings ~*/
+  --h1-text-color: var(--color-d-red-700);
+  --h2-text-color: var(--color-d-red-700);
+  --h3-text-color: var(--color-d-yellow-700);
+  --h4-text-color: var(--color-d-orange-700);
+  --h5-text-color: var(--color-d-green-700);
+  --h6-text-color: var(--color-d-violet-700);
+
+  --r-background-color: var(--background-primary);
+  --r-main-font: "FantasqueSansM Nerd Font Propo", Lato, sans-serif;
+  --r-main-font-size: max(1vw, 14px);
+  --r-main-color: var(--text-normal);
+  --r-block-margin: 20px;
+  --r-heading-margin: 0 0 20px 0;
+  --r-heading-font: "Alegreya", Lora, Georgia, serif;
+  --r-interactive-elements-font: "Alegreya Sans", sans-serif;
+  --r-heading-color: var(--text-normal);
+  --r-heading-line-height: 1em;
+  --r-heading-letter-spacing: normal;
+  --r-heading-text-transform: uppercase;
+  --r-heading-text-shadow: none;
+  --r-heading1-font-weight: normal;
+  --r-heading2-font-weight: bold;
+  --r-heading3-font-weight: normal;
+  --r-heading4-font-weight: normal;
+  --r-heading5-font-weight: normal;
+  --r-heading6-font-weight: normal;
+  --r-heading1-text-shadow: none;
+  --r-heading1-size: min(8vw, 6rem);
+  --r-heading2-size: 2.5rem;
+  --r-heading3-size: 1.5em;
+  --r-heading4-size: 1.2em;
+  --r-heading5-size: 1em;
+  --r-heading6-size: 1em;
+  --r-code-font: "Hack Nerd Font Mono", monospace;
+  --r-link-color: var(--color-d-yellow-700);
+  --r-link-color-dark: var(--color-d-yellow-900);
+  --r-link-color-hover: var(--color-d-yellow-500);
+  --r-selection-background-color: var(--color-d-green-900);
+  --r-selection-color: var(--color-d-black);
+}
+
+.reveal-viewport {
+  /* background: var(--background-primary);
+  background-image: -moz-radial-gradient(center, circle cover, green 0%, orange 100%);
+  background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, green), color-stop(100%, orange));
+  background-image: -webkit-radial-gradient(center, circle cover, green 0%, orange 100%);
+  background-image: -o-radial-gradient(center, circle cover, green 0%, orange 100%);
+  background-image: -ms-radial-gradient(center, circle cover, green 0%, orange 100%);
+  background-image: radial-gradient(center, circle cover, var(--background-primary) 0%, orange 100%); */
+  background-color: var(--background-primary);
+}
+
+.reveal {
+  font-family: var(--r-main-font);
+  font-size: var(--r-main-font-size);
+  font-weight: normal;
+  color: var(--r-main-color);
+}
+
+.reveal ::selection {
+  color: var(--r-selection-color);
+  background: var(--r-selection-background-color);
+  text-shadow: none;
+}
+
+.reveal ::-moz-selection {
+  color: var(--r-selection-color);
+  background: var(--r-selection-background-color);
+  text-shadow: none;
+}
+
+.reveal .slides section,
+.reveal .slides section>section {
+  line-height: 1.3;
+  font-weight: inherit;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  margin: var(--r-heading-margin);
+  /* color: var(--r-heading-color); */
+  font-family: var(--r-heading-font);
+  line-height: var(--r-heading-line-height);
+  letter-spacing: var(--r-heading-letter-spacing);
+  /* text-transform: var(--r-heading-text-transform); */
+  text-shadow: var(--r-heading-text-shadow);
+  word-wrap: break-word;
+  font-weight: bold;
+}
+
+.reveal h1 {
+  font-size: var(--r-heading1-size);
+  font-weight: var(--r-heading1-font-weight);
+  text-shadow: var(--r-heading1-text-shadow);
+}
+
+.reveal h2 {
+  font-size: var(--r-heading2-size);
+  font-weight: var(--r-heading2-font-weight);
+}
+
+.reveal h3 {
+  font-size: var(--r-heading3-size);
+  font-weight: var(--r-heading3-font-weight);
+}
+
+.reveal h4 {
+  font-size: var(--r-heading4-size);
+  font-weight: var(--r-heading4-font-weight);
+}
+
+.reveal h5 {
+  font-size: var(--r-heading5-size);
+  font-weight: var(--r-heading5-font-weight);
+}
+
+.reveal h6 {
+  font-size: var(--r-heading6-size);
+  font-weight: var(--r-heading6-font-weight);
+}
+
+.reveal .slides > section.drop {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 100%;
+}
+
+.reveal p {
+  margin: var(--r-block-margin) 0;
+  line-height: 1.3;
+}
+
+.reveal h1:last-child,
+.reveal h2:last-child,
+.reveal h3:last-child,
+.reveal h4:last-child,
+.reveal h5:last-child,
+.reveal h6:last-child {
+  margin-bottom: 0;
+}
+
+.reveal img,
+.reveal video,
+.reveal iframe {
+  max-width: 95%;
+  max-height: 95%;
+}
+
+.reveal strong,
+.reveal b {
+  font-weight: bold;
+  color: var(--color-d-red-700);
+}
+
+.reveal em,
+.reveal i {
+  font-style: italic;
+}
+
+.reveal ol,
+.reveal dl,
+.reveal ul {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1em;
+}
+
+.reveal ul li::marker,
+.reveal ol li::marker {
+  color: var(--color-highlight-yellow);
+}
+.reveal ol {
+  list-style-type: decimal;
+}
+
+.reveal ul {
+  list-style-type: disc;
+}
+
+.reveal ul ul {
+  list-style-type: square;
+}
+
+.reveal ul ul ul {
+  list-style-type: circle;
+}
+
+.reveal ul ul,
+.reveal ul ol,
+.reveal ol ol,
+.reveal ol ul {
+  display: block;
+  margin-left: 1rem;
+}
+
+.reveal dt {
+  font-weight: bold;
+}
+
+.reveal dd {
+  margin-left: 1rem;
+}
+
+.reveal blockquote {
+  display: block;
+  position: relative;
+  width: 70%;
+  margin: var(--r-block-margin) auto;
+  padding: 5px;
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.reveal blockquote p:first-child,
+.reveal blockquote p:last-child {
+  display: inline-block;
+}
+
+.reveal q {
+  font-style: italic;
+}
+
+.reveal pre {
+  display: block;
+  position: relative;
+  width: 90%;
+  margin: var(--r-block-margin) auto;
+  text-align: left;
+  font-size: 0.55em;
+  font-family: var(--r-code-font);
+  line-height: 1.2em;
+  word-wrap: break-word;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.reveal code {
+  font-family: var(--r-code-font);
+  text-transform: none;
+  tab-size: 2;
+}
+
+.reveal pre code {
+  display: block;
+  padding: 5px;
+  overflow: auto;
+  max-height: 400px;
+  word-wrap: normal;
+}
+
+.reveal .code-wrapper {
+  white-space: normal;
+}
+
+.reveal .code-wrapper code {
+  white-space: pre;
+}
+
+.reveal table {
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.reveal table th {
+  font-weight: bold;
+}
+
+.reveal table th,
+.reveal table td {
+  text-align: left;
+  padding: 0.2em 0.5em;
+  border-bottom: 1px solid;
+}
+
+.reveal table th[align=center],
+.reveal table td[align=center] {
+  text-align: center;
+}
+
+.reveal table th[align=right],
+.reveal table td[align=right] {
+  text-align: right;
+}
+
+.reveal table tbody tr:last-child th,
+.reveal table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.reveal sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+.reveal sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+.reveal small {
+  display: inline-block;
+  font-size: 0.6em;
+  line-height: 1.2em;
+  vertical-align: top;
+}
+
+.reveal small * {
+  vertical-align: top;
+}
+
+.reveal img {
+  margin: var(--r-block-margin) 0;
+}
+
+.reveal a {
+  color: var(--r-link-color);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.reveal a:hover {
+  color: var(--r-link-color-hover);
+  text-shadow: none;
+  border: none;
+}
+
+.reveal .roll span:after {
+  color: #fff;
+  background: var(--r-link-color-dark);
+}
+
+.reveal .r-frame {
+  border: 4px solid var(--r-main-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.reveal a .r-frame {
+  transition: all 0.15s linear;
+}
+
+.reveal a:hover .r-frame {
+  border-color: var(--r-link-color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+}
+
+.reveal .controls {
+  color: var(--r-link-color) !important;
+}
+
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--r-link-color);
+}
+
+
+
+@media print {
+  .backgrounds {
+    background-color: var(--r-background-color);
+  }
+}
+
+.has-dark-background canvas[data-chart] {
+  background-color: white;
+}
+
+.has-light-background canvas[data-chart] {
+  background-color: unset;
+}
+
+canvas[data-chart] {
+  padding: 0.5em;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+p.reset-paragraph {
+  margin: inherit;
+  line-height: inherit;
+}
+
+.reveal img,
+.reveal video,
+.reveal iframe {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.reveal ol,
+.reveal dl,
+.reveal ul {
+  text-align: left;
+  margin: var(--r-block-margin) 0;
+  margin-left: 1em;
+}
+
+.reveal sup {
+  vertical-align: super;
+  font-size: x-small;
+  color: var(--r-link-color);
+}
+
+.reveal sub {
+  vertical-align: sub;
+  font-size: x-small;
+}
+
+.footnotes {
+  font-size: 8px;
+}
+
+.footnotes>ol * {
+  margin: 0px !important;
+}
+
+.footnotes>ol>li::marker {
+  color: var(--r-link-color);
+  content: counter(list-item) ": ";
+}
+
+
+
+/* M O J E */
+
+.reveal-viewport {
+  max-width: 100%;
+  max-height: 100%;
+  /* border: 10px solid lime; */
+}
+
+.reveal-viewport * {
+  max-width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+
+.reveal {
+  --slide-scale: 1;
+  --r-controls-spacing: 2rem;
+  position: relative;
+  padding: 0;
+  /* border: 10px solid fuchsia; */
+}
+
+.reveal aside.controls button {
+  /* popravak krivog prikaza kontrola */
+  scale: .5;
+}
+
+.reveal .slides {
+  /* Set overflows to allow for auto vertical scroll bar and no horizontal scroll bar */
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  scroll-behavior: smooth;
+  /* Enable pointer events so users can click and drag on scrollbars */
+  pointer-events: auto !important;
+  /* border: 3px solid brown; */
+}
+
+.reveal .slides>section {
+  /* background-color: fuchsia; */
+  overflow: hidden;
+  /* border: 3px solid yellow; */
+}
+
+
+.reveal .slides section>div {
+  /* justify-content: space-around !important; */
+  /* border: 3px solid cornflowerblue; */
+}
+
+.reveal .slides>section>section {}
+
+.reveal .slides section.past,
+.reveal .slides section.future {}
+
+
+.reveal .slides h1,
+.reveal .slides h2,
+.reveal .slides h3,
+.reveal .slides h4,
+.reveal .slides h5,
+.reveal .slides h6 {
+  text-transform: none;
+  color: var(--text-heading);
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+.reveal .slides h1 {
+  color: var(--color-d-yellow-700);
+  margin-top: 0;
+  margin-bottom: 6rem;
+  font-size: min(3vw, 4rem);
+  font-weight: 700;
+}
+
+.reveal .slides h2 {
+  color: var(--color-d-gray-20);
+  font-size: min(2vw, 2rem);
+  /* margin-top: 0 !important; */
+  margin-bottom: 2rem;
+}
+
+.reveal .slides .callout {
+  font-size: .93em;
+}
+
+.reveal .slides em,
+.reveal .slides i {
+  color: var(--color-d-blue-700);
+}
+
+.reveal .slides a {
+  color: var(--color-d-yellow-500);
+}
+
+.reveal button {
+  display: block;
+  border: none;
+  padding: .25rem .5rem;
+  border-radius: .2em;
+  margin: .5rem 0;
+  font-family: var(--r-interactive-elements-font);
+  font-size: 1.25rem;
+  letter-spacing: .05em;
+  color: var(--background-primary);
+  background-color: var(--color-highlight-green);
+}
+
+.reveal .slide-background-content {
+  opacity: .25;
+  max-width: 100vw;
+  background-size: 110%;
+  background-position: 50% 100%;
+}
+
+.reveal .slides .mermaid svg {
+  min-width: 50%;
+}
+
+
+/* Apply styles that apply directly to slides */
+/* Create flex container to arrange auto-generated elements by Obsidian on each slide */
+/* .slides > section {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+} */
+.reveal .progress span {
+  background-color: var(--text-accent) !important;
+}
+
+/* Change default slide control button colors to purple */
+.reveal .controls {
+  color: var(--text-accent)
+}
+
+/* Set control hover color to be a slightly lighter purple */
+.reveal .controls:hover {
+  color: var(--text-accent-hover)
+}
+
+.reveal .slides-close-btn {
+  color: #48474494;
+}
+
+.reveal time {
+  color: var(--color-d-green-700);
+}
+
+
+/*────────────────────────────────────
+              Mermaid
+  ────────────────────────────────────*/
+
+
+.reveal .mermaid {
+  margin: 2rem 0;
+  /* border: 1px solid var(--color-d-gray-30); */
+}
+
+.reveal .mermaid svg {
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  display: block;
+  margin-inline: auto;
+}
+
+.reveal .mermaid .edgePaths path {
+  stroke: var(--color-d-gray-20) !important;
+  stroke-width: 1px !important;
+}
+
+.reveal .mermaid .edgeLabel {
+  text-transform: uppercase;
+  font-size: .55rem;
+  line-height: 1.5rem;
+  padding: .15rem;
+  letter-spacing: .15rem;
+  color: var(--color-d-green-900) !important;
+}
+
+.reveal .mermaid #flowchart-pointEnd,
+.reveal .mermaid #graph-pointEnd {
+  stroke: var(--color-d-gray-20) !important;
+  fill: none !important;
+}
+
+.reveal .mermaid span,
+.reveal .mermaid .label text {
+  fill: var(--text-normal) !important;
+  color: var(--text-normal) !important;
+  font-family: var(--font-editor);
+  font-style: italic;
+}
+
+.reveal .mermaid .cluster-label .nodeLabel {
+  color: var(--color-d-gray-30) !important;
+  text-transform: uppercase;
+  letter-spacing: .2rem;
+  line-height: 0;
+  font-weight: bold;
+  border-bottom: 1px solid var(--color-d-green-900);
+  padding-bottom: .2rem;
+  ;
+}
+
+.reveal .mermaid .node .label-container {
+  fill: transparent !important;
+  stroke: var(--color-d-gray-30) !important;
+}
+
+.reveal .mermaid div {
+  color: var(--text-muted);
+}
+
+/* popravlja problem sa velikim razmakom između embedova */
+.reveal .markdown-preview-view .markdown-embed,
+.reveal .markdown-embed-content,
+.reveal .markdown-preview-view table,
+.reveal .popover .markdown-preview-sizer,
+.reveal .popover .markdown-preview-section {
+  padding-bottom: 0px !important;
+  /*Gets rid of bottom padding on each page*/
+  margin: 0 !important;
+  /* Gets rid of margins on the embedded tables */
+  min-height: 0px !important;
+  /*Useful for embedded pages*/
+  max-height: 9999999999px !important;
+  /* Kako bi se prikazao cijeli sadržaj */
+  height: auto !important;
+  /* Because min-auto wasn't enough for Live Preview */
+
+}
+
+.reveal .popover .markdown-embed-content {
+  max-height: auto !important;
+  /* Kako bi se prikazao sadržaj mogao scrolati unutar popupa */
+  /* border-radius: 0; */
+}
+
+.reveal div.popover.hover-popover {
+  width: max(43em, 43vw);
+  max-height: 100% !important;
+  /* Kako bi se prikazao cijeli sadržaj, nemam poima zašto to treba dodati */
+  /* height: auto !important; */
+  /* Because min-auto wasn't enough for Live Preview */
+}
+
+.reveal .popover:not(.pdf-embed)>*:nth-child(1) {
+  height: auto !important;
+  max-height: 40vh !important;
+  overflow: auto;
+  --background-primary: var(--color-d-gray-70);
+}
+
+.reveal .popover.hover-popover.pdf-embed {
+  min-width: 75vw;
+}
+
+.reveal .popover .markdown-preview-view table {
+  margin-left: -2rem !important;
+  width: calc(100% + 2rem) !important;
+  /* border-radius: .8rem 0 0 .8rem !important; */
+  overflow: hidden;
+}
+
+.reveal .markdown-preview-view .markdown-preview-view {
+  padding-bottom: 1rem !important;
+  /*Gets rid of bottom padding on popovers*/
+  border-radius: 0;
+}
+
+
+/*────────────────────────────────────
+              Callouts
+  ────────────────────────────────────*/
+
+.reveal .cm-contentContainer {
+  font-variant-numeric: oldstyle-nums;
+  font-variant-ligatures: historical-ligatures;
+  max-width: 90ch !important;
+}
+
+.reveal .cm-content,
+.reveal .cm-line {
+  max-width: 100% !important;
+}
+
+.reveal .cm-tag-provjeriti,
+.reveal a.tag[href="#provjeriti"],
+.reveal .cm-tag-greka,
+.reveal a.tag[href="#greška"],
+.reveal .cm-tag-promisliti,
+.reveal a.tag[href="#promisliti"],
+.reveal .cm-tag-fali-referenca,
+.reveal a.tag[href="#fali-referenca"],
+.reveal .cm-tag-treberaj,
+.reveal a.tag[href="#štreberaj"] {
+  color: var(--color-d-red-900) !important;
+  background-color: var(--color-d-black) !important;
+  border-color: currentColor !important;
+  border-width: .1px !important;
+  /* border-image: linear-gradient( to top, var(--color-d-red-700), var(--color-d-red-900)) !important; */
+  text-transform: none;
+}
+
+.reveal .cm-tag-provjeriti:hover,
+.reveal a.tag[href="#provjeriti"]:hover,
+.reveal .cm-tag-greka:hover,
+.reveal a.tag[href="#greška"]:hover {
+  color: var(--color-d-red-700) !important;
+}
+
+.reveal .cm-tag-promisliti,
+.reveal a.tag[href="#promisliti"] {
+  color: var(--color-d-blue-700) !important;
+}
+
+.reveal .cm-tag-razmisliti:hover,
+.reveal a.tag[href="#razmisliti"]:hover {
+  color: var(--color-d-blue-500) !important;
+}
+
+.reveal .cm-tag-fali-referenca,
+.reveal a.tag[href="#fali-referenca"] {
+  color: var(--color-d-violet-700) !important;
+}
+
+.reveal .cm-tag-fali-referenca:hover,
+.reveal a.tag[href="#fali-referenca"]:hover {
+  color: var(--color-d-violet-500) !important;
+}
+
+.reveal .cm-tag-treberaj,
+.reveal a.tag[href="#štreberaj"] {
+  color: var(--color-d-green-700) !important;
+}
+
+.reveal .cm-tag-treberaj:hover,
+.reveal a.tag[href="#štreberaj"]:hover {
+  color: var(--color-d-green-500) !important;
+}
+
+.reveal .callout {
+  background-color: transparent !important;
+  border: none !important;
+  --font-editor-header: var(--r-heading-font);
+  margin: 0 !important;
+}
+
+.reveal blockquote.citat,
+.reveal blockquote.naglasak,
+.reveal .callout .callout-content,
+.reveal .callout .callout-title {
+  margin: 0;
+  padding: .75rem 1.25rem .75rem 1.75rem;
+  font-family: var(--font-editor-header);
+  font-size: .7em;
+  letter-spacing: .025em;
+  position: relative;
+  z-index: 9999;
+  color: var(--color-d-gray-10);
+  border-radius: .666em;
+  /* border: .5px solid var(--color-d-gray-50); */
+  background-color: transparent !important;
+  border: 0;
+  box-shadow: none !important;
+}
+
+.reveal .callout .callout-content {
+  display: none;
+}
+
+.reveal .callout .callout-title-inner {
+  font-weight: normal;
+}
+
+.reveal .cm-embed-block.cm-callout {
+  border: 0 !important;
+}
+
+.reveal .callout .callout-icon {
+  position: absolute;
+  top: .35rem;
+  left: .35rem;
+  font-size: .75rem;
+  color: var(--color-d-blue-900);
+}
+
+.reveal .callout[data-callout="quote"] .callout-title .callout-icon,
+.reveal .callout[data-callout="cite"] .callout-title .callout-icon,
+/* .callout[data-callout="hint"] .callout-title .callout-icon, */
+.reveal .callout[data-callout="tip"] .callout-title .callout-icon,
+.reveal .callout[data-callout="important"] .callout-title .callout-icon {
+  display: none;
+}
+
+.reveal blockquote.citat:before,
+.reveal .callout[data-callout="quote"] .callout-title:before,
+.reveal .callout[data-callout="cite"] .callout-title:before {
+  content: "“";
+  display: block;
+  position: absolute;
+  top: .22em;
+  left: 0rem;
+  font-size: 3em;
+}
+
+.reveal blockquote.naglasak:before,
+/* .callout[data-callout="hint"] .callout-title:before, */
+.reveal .callout[data-callout="important"] .callout-title:before,
+.reveal .callout[data-callout="tip"] .callout-title:before {
+  content: "!";
+  display: block;
+  position: absolute;
+  top: min(.45em, 30%);
+  left: .6rem;
+  font-size: 2em;
+}
+
+.reveal .callout p,
+.reveal .callout ol,
+.reveal .callout ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+
+.reveal .callout[data-callout="quote"],
+.reveal .callout[data-callout="cite"] {
+  border: 0 !important;
+  font-style: italic;
+}
+
+.reveal .callout .callout-title:before,
+.reveal .callout .callout-fold,
+.reveal .callout strong,
+.reveal blockquote strong {
+  color: var(--callout-color);
+}
+
+
+.reveal blockquote em,
+.reveal .callout em,
+.reveal blockquote cite,
+.reveal .callout cite {
+  color: var(--callout-color-secondary);
+  font-variant-caps: small-caps;
+  letter-spacing: .1rem;
+  font-size: 1.1em;
+}
+
+.reveal blockquote.citat sub,
+.reveal blockquote.naglasak sub,
+.reveal .callout sub,
+.reveal blockquote.citat sup,
+.reveal blockquote.naglasak sup,
+.reveal .callout sup {
+  font-variant-caps: normal !important;
+}
+
+.reveal blockquote.naglasak,
+.reveal .callout[data-callout="hint"],
+.reveal .callout[data-callout="important"],
+.reveal .callout[data-callout="tip"] {
+  background-color: var(--color-d-gray-90);
+  border: .5px solid var(--color-d-gray-50);
+}
+
+.reveal blockquote.citat cite,
+.reveal .callout[data-callout="cite"] cite,
+.reveal .callout[data-callout="quote"] cite {
+  color: var(--callout-color);
+}
+
+/* Sizing Fixes */
+.reveal .markdown-source-view.mod-cm6 .HyperMD-quote.HyperMD-callout {
+  padding: 0;
+}
+
+.reveal .markdown-source-view.mod-cm6 .HyperMD-quote.HyperMD-callout+.HyperMD-quote,
+.reveal .markdown-source-view.mod-cm6 .HyperMD-quote.HyperMD-callout+.HyperMD-quote+.HyperMD-quote,
+.reveal .markdown-source-view.mod-cm6 .HyperMD-quote.HyperMD-callout+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote,
+.reveal .markdown-source-view.mod-cm6 .HyperMD-quote.HyperMD-callout+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote,
+.reveal .markdown-source-view.mod-cm6 .HyperMD-quote.HyperMD-callout+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote,
+.reveal .markdown-source-view.mod-cm6 .HyperMD-quote.HyperMD-callout+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote,
+.reveal .markdown-source-view.mod-cm6 .HyperMD-quote.HyperMD-callout+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote,
+.reveal .markdown-source-view.mod-cm6 .HyperMD-quote.HyperMD-callout+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote,
+.reveal .markdown-source-view.mod-cm6 .HyperMD-quote.HyperMD-callout+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote,
+.reveal .markdown-source-view.mod-cm6 .HyperMD-quote.HyperMD-callout+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote+.HyperMD-quote {
+  padding: 0;
+}
+
+/* space for shadow */
+.reveal .markdown-source-view.mod-cm6 .cm-embed-block.cm-callout {
+  padding: 0;
+  padding-bottom: 6px;
+}
+
+.reveal .callout {
+  border-radius: var(--scale-2-4);
+  transition: var(--duration-superfast) var(--motion-smooth);
+}
+
+.reveal .markdown-source-view.mod-cm6 .callout {
+  margin: 0 0;
+  border-top-right-radius: var(--scale-2-4);
+  border-bottom-right-radius: var(--scale-2-4);
+}
+
+.reveal .callout-title {
+  padding: var(--scale-2-4) 1em;
+  border-top-right-radius: var(--scale-2-4);
+  border-top-left-radius: var(--scale-2-4);
+}
+
+.reveal .callout.is-collapsed .callout-title {
+  border-bottom-left-radius: var(--scale-2-4);
+  border-bottom-right-radius: var(--scale-2-4);
+}
+
+.reveal .callout-content {
+  padding: var(--scale-0-0) 1em;
+  border-bottom-right-radius: var(--scale-2-4);
+  border-bottom-left-radius: var(--scale-2-4);
+}
+
+.reveal .callout-icon svg,
+.reveal .callout-fold svg {
+  height: var(--editor-font-size);
+  width: var(--editor-font-size);
+}
+
+.reveal .callout-icon,
+.reveal .callout-fold {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--callout-color);
+}
+
+/* General Styling */
+.reveal .callout {
+  border: .25px solid var(--color-d-gray-50);
+}
+
+.reveal .callout-title {
+  background: rgba(var(--callout-color), 0.2);
+}
+
+.reveal .callout-title .callout-icon {
+  filter: brightness(1);
+}
+
+.reveal .callout-fold {
+  color: var(--callout-color);
+}
+
+.reveal .theme-light .callout-fold {
+  filter: brightness(0.75);
+}
+
+.reveal .theme-dark .callout-fold {
+  filter: brightness(1);
+}
+
+.reveal .theme-light .callout-content {
+  background: var(--color-l-gray-10);
+  box-shadow: 0px -3px 0px 0px rgba(0, 0, 0, 0.05) inset, 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+}
+
+.reveal .theme-dark .callout-content {
+  background: var(--color-d-black);
+  box-shadow: 0px -3px 0px 0px rgba(0, 0, 0, 0.175) inset, 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Callout Type Styling */
+.reveal div.callout {
+  --callout-color: var(--color-d-gray-30);
+}
+
+/* smeđi */
+.reveal div.callout[data-callout=note],
+.reveal div.callout[data-callout=quote],
+.reveal div.callout[data-callout=summary],
+.reveal div.callout[data-callout=morning] {
+  --callout-color: var(--color-d-orange-900);
+  --callout-color-secondary: var(--color-d-blue-700);
+}
+
+.reveal div.callout[data-callout=morning] {
+  --callout-icon: coffee;
+}
+
+/* div.callout[data-callout=note] .callout-title {
+    background: rgb(var(--callout-color), 0.03);
+  } */
+
+
+
+/* zeleni */
+.reveal div.callout[data-callout=cite],
+.reveal div.callout[data-callout=tip],
+.reveal div.callout[data-callout=example],
+.reveal div.callout[data-callout=pro] {
+  --callout-color: var(--color-d-green-700);
+  --callout-color-secondary: var(--color-d-orange-700);
+}
+
+/* div.callout[data-callout=tip] {
+    --callout-icon: clover;
+  } */
+.reveal div.callout[data-callout=pro] {
+  --callout-icon: thumbs-up;
+}
+
+/* žuti */
+.reveal div.callout[data-callout=idea],
+.reveal div.callout[data-callout=question],
+.reveal div.callout[data-callout=attention],
+.reveal div.callout[data-callout=important] {
+  --callout-color: var(--color-d-yellow-900);
+  --callout-color-secondary: var(--color-d-orange-700);
+}
+
+.reveal div.callout[data-callout=idea] {
+  --callout-icon: lightbulb;
+}
+
+/* plavi */
+.reveal div.callout[data-callout=hint],
+.reveal div.callout[data-callout=abstract],
+.reveal div.callout[data-callout=info],
+.reveal div.callout[data-callout=help],
+.reveal div.callout[data-callout=faq] {
+  --callout-color: var(--color-d-blue-900);
+  --callout-color-secondary: var(--color-d-violet-700);
+}
+
+.reveal div.callout[data-callout=hint] {
+  --callout-icon: search;
+}
+
+.reveal div.callout[data-callout=abstract] {
+  --callout-icon: loader;
+}
+
+.reveal div.callout[data-callout=summary] {
+  --callout-icon: align-justify;
+}
+
+/* Ljubičasti */
+.reveal div.callout[data-callout=todo] {
+  --callout-icon: check-square;
+  --callout-color: var(--color-d-violet-700);
+  --callout-color-secondary: var(--color-d-green-700);
+}
+
+
+/* crveni 1 */
+.reveal div.callout[data-callout=caution],
+.reveal div.callout[data-callout=tldr],
+.reveal div.callout[data-callout=con] {
+  --callout-color: var(--color-d-red-900);
+  --callout-color-secondary: var(--color-d-blue-700);
+}
+
+.reveal div.callout[data-callout=error] {
+  --callout-icon: alert-circle;
+}
+
+.reveal div.callout[data-callout=tldr] {
+  --callout-icon: clock-4;
+}
+
+/* div.callout[data-callout=tldr] .callout-title {
+    text-transform: uppercase;
+  } */
+/* div.callout[data-callout=important] {
+    --callout-icon: asterisk;
+  } */
+.reveal div.callout[data-callout=con] {
+  --callout-icon: thumbs-down;
+}
+
+/* crveni 2 */
+.reveal div.callout[data-callout=warning],
+.reveal div.callout[data-callout=fail],
+.reveal div.callout[data-callout=failure],
+.reveal div.callout[data-callout=danger],
+.reveal div.callout[data-callout=error],
+.reveal div.callout[data-callout=bug] {
+  --callout-color: var(--color-d-red-a);
+  --callout-color-secondary: var(--color-d-yellow-700);
+  border-color: var(--callout-color);
+  background-color: var(--color-d-black);
+}
+
+
+
+.reveal div.callout[data-callout*=celebrate],
+.reveal div.callout[data-callout*=success] {
+  --callout-icon: flag;
+  --callout-color: var(--color-d-yellow-700);
+  --callout-color-secondary: var(--color-d-violet-300);
+  border-color: transparent;
+}
+
+.reveal div.callout[data-callout*=celebrate] .callout-title,
+.reveal div.callout[data-callout*=success] .callout-title {
+  background: linear-gradient(45deg, #ef92af10, #7bd7e910, #81e1a510, #ffda2b10);
+  background-size: 800% 800%;
+  -webkit-animation: animateCelebrate 15s ease infinite;
+}
+
+.reveal div.callout[data-callout*=celebrate] .callout-icon,
+.reveal div.callout[data-callout*=success] .callout-icon {
+  transform: rotate(-20deg);
+}
+
+.reveal div.callout[data-callout*=celebrate] .callout-icon,
+.reveal div.callout[data-callout*=celebrate] .callout-fold,
+.reveal div.callout[data-callout*=success] .callout-icon,
+.reveal div.callout[data-callout*=success] .callout-fold {
+  color: var(--md-color-text);
+}
+
+/* animation for celebrate callout */
+@-webkit-keyframes animateCelebrate {
+  0% {
+    background-position: 0% 47%;
+  }
+
+  50% {
+    background-position: 100% 54%;
+  }
+
+  100% {
+    background-position: 0% 47%;
+  }
+}
