@@ -3,9 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap');
 
 @font-face {
-  font-family: "FantasqueSans Nerd Font Propo";
+  font-family: "FantasqueSansM Nerd Font Propo";
   src:
-    local("FantasqueSans Nerd Font Propo"),
+    local("FantasqueSansM Nerd Font Propo"),
     url("fantasquesans/fantasquesansmono-regular.otf") format("opentype");
 }
 
@@ -163,7 +163,7 @@
   --h6-text-color: var(--color-d-violet-700);
 
   --r-background-color: var(--background-primary);
-  --r-main-font: "FantasqueSans Nerd Font Propo", Lato, monotype;
+  --r-main-font: "FantasqueSansM Nerd Font Propo", Lato, monospace;
   --r-main-font-size: max(1vw, 14px);
   --r-main-color: var(--text-normal);
   --r-block-margin: 20px;
