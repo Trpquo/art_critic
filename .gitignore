@@ -1,0 +1,9 @@
+.vscode/
+__*/
+zzz_*
+models/
+artefacts/
+artefacts*/
+backup/
+visualizations/
+output/
