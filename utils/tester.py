@@ -14,7 +14,7 @@ from fastai.vision.all import (  # , verify_images
 from fastdownload import download_url
 import torch
 
-categories = {"depth": ["iconic", "symbolic"], "breath": ["abstract", "concrete"]}
+categories = {"depth": ["iconic", "symbolic"], "breadth": ["abstract", "concrete"]}
 
 
 def test_learners(learners, test_set, model_name, root, preview=False):
@@ -100,7 +100,7 @@ def predict_cbm_image(learn, sample):
     # Your original category ordering is encoded explicitly here.
     # This avoids fragile fastai decoding for the multi-output CBM.
     class_names = {
-        "breath": ["abstract", "concrete"],
+        "breadth": ["abstract", "concrete"],
         "depth": ["iconic", "symbolic"],
     }
 
@@ -128,7 +128,7 @@ def predict_columns(learners, database, model_name, root):
         directory.mkdir()
 
     class_names = {
-        "breath": ["abstract", "concrete"],
+        "breadth": ["abstract", "concrete"],
         "depth": ["iconic", "symbolic"],
     }
 
@@ -171,8 +171,8 @@ def predict_columns(learners, database, model_name, root):
                         "title",
                         "year",
                         "style",
-                        "breath",
-                        "breath_probs",
+                        "breadth",
+                        "breadth_probs",
                         "depth",
                         "depth_probs",
                         "genre",

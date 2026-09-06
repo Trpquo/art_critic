@@ -226,11 +226,12 @@ def get_device():
 
 def create_learners(dataloaders, model=resnet34):
     """f(dataloaders:DataBlock.loaders(), model:fastai.vision.models) ==> learners:{ "axis":vision.models[n]... }"""
-
+    device = get_device()
     learners = {}
     for key in dataloaders.keys():
         print(f">>> Preparing learner for {key}! >>>")
         learners[key] = vision_learner(dataloaders[key], model, metrics=error_rate)
+        learners[key].to(device)
     return learners
 
 
